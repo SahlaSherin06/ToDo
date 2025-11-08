@@ -12,9 +12,11 @@ const todoSlice=createSlice({
 			state.value=state.value.filter((e)=>e.id!==action.payload)
 		},
 		edit:(state,action)=>{
-			state.value.find((e)=>e.id==action.payload.id)
-		}
+		const aa=state.value.find((e)=>e.id==action.payload.id)
+		if(aa){aa.text=action.payload.text}
 	}
+}
 })
-export const {remove,edit,add}=todoSlice.actions
+
+export const {add,remove,edit} = todoSlice.actions
 export default todoSlice.reducer

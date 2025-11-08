@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { add, edit, remove } from './Store/Slice/todoSlice'
+import {useDispatch,useSelector} from 'react-redux'
+import { edit,remove,add } from './Store/Slice/todoSlice'
 
 function App() {
   const dispatch=useDispatch()
@@ -11,30 +11,30 @@ function App() {
     if(text.trim()===""){
       return;
     }dispatch(add(text))
-    setText("")
+    setText("");
   }
 
+  
   return (
     <div>
-      <h1>ToDo App</h1>
+      <h1>Todo App</h1>
       <input type="text"
       value={text}
-      placeholder='Enter Here'
+      placeholder='enter here'
       onChange={(e)=>setText(e.target.value)}
       />
-      <button onClick={(handleSubmit)}>Add</button>
-
+      <button onClick={handleSubmit}>Add</button>
       <ul>
         {todos.map((n)=>(
           <li key={n.id}>
             {n.text}
-            <button onClick={()=>dispatch(remove(n.id))}>Delete</button>
-            <button onClick={()=>{
-              const newText=prompt('enter here')
-              if(newText){
-                dispatch(edit({id:n.id,text:n.newText}))
-              }
-            }}>Edit</button>
+          <button onClick={()=>dispatch(remove(n.id))}>Delete</button>
+          <button onClick={()=>{
+            const newText=prompt('enter here')
+            if(newText){
+              dispatch(edit({id:n.id,text:newText}))
+            }
+          }}>Edit</button>
           </li>
         ))}
       </ul>
